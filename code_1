@@ -1,0 +1,36 @@
+import random
+
+def deck_of_cards() :                                         #CREATING A DECK OF 52 CARDS
+    rank= ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
+    suit = ['Clubs', 'Hearts', 'Spades', 'Diamonds']
+    deck = []
+    for i in rank:
+        for j in suit:
+            deck.append(str(i) + ' of ' + str(j))
+    return deck 
+
+
+def next_card(deck) :            #THIS WILL PICK A RANDOM CARD AFTER IT SUFFLES THE DECK
+    random.shuffle(deck)
+    return deck[0]
+
+def remove_card(deck, card) :    #THIS WILL  REMOVE EACH CARD THAT WE PICK FROM THE DECK
+    return deck.remove(card)
+
+
+def main() :
+    while True:
+        ans = input("Write HIT for a card or EXIT to exit: \n>").upper()
+        if ans == "HIT" :       #PICKS A CARD
+            deck = deck_of_cards()
+            if len(deck) == 0 : #BREAKS WHEN YOU BURN THROUGH THE DECK
+                print("You run out of cards in the deck!!")
+                break
+            else :              #PICK ANOTHER CARD
+                card = next_card(deck)
+                remove_card(deck, card)
+                print(card)
+        elif ans == "EXIT" :   #BREAKS IN ORDER TO EXIT
+            break
+        else:
+            print("I said HIT or EXIT bro")
